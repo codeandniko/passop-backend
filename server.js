@@ -21,7 +21,7 @@ const client = new MongoClient(url);
 
 const dbName = 'Passop';
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000;
 app.use(bodyParser.json())
 app.use(cors())
 
@@ -91,9 +91,9 @@ app.delete('/', async (req, res) => {
 });
 
 
-app.listen(port, () => {
-  console.log(`Example app listening on      http://localhost:${port}`)
-})  
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server running on http://0.0.0.0:${port}`);
+}); 
 app.post('/suggest-password', (req, res) => {
   const { site, username } = req.body;
 
